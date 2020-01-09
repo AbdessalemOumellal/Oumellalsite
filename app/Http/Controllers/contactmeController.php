@@ -52,7 +52,8 @@ class contactmeController extends Controller
             $message->phone = $request->phone;
             $message->message = $request->message;
             $message->save();
-            mail('fa_oumellal@esi.dz','From : '.$message->email.' Jai vu votre portfolio', $message->message."\r\n\r\n".'My phone number is : '.$message->phone);
+
+            mail('fa_oumellal@esi.dz','Website Contact Form: '.$message->fullname, "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $message->fullname\n\nEmail: $message->email\n\nPhone: $message->phone\n\nMessage:\n$message->message"."\r\n\r\n");
 
             return redirect('/#contact')->with('Successmsg', 'Message Successfully Sent');
     }
